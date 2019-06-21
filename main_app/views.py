@@ -32,6 +32,8 @@ def signup(request):
 
 def index(request):
     # request.session.flush()
+    request.session['grape'] = ''
+    request.session['regions'] = ''    
     return render(request, 'index.html')
 
 def about(request):
@@ -40,7 +42,7 @@ def about(request):
 @login_required
 def profile(request):
     tours = Tour.objects.filter(user=request.user.id)
-    return render (request, 'profile.html', {'tours': tours})
+    return render(request, 'profile.html', {'tours': tours})
 
 def recommendedtrips(request):
     return render(request, 'recommended-trips.html')
